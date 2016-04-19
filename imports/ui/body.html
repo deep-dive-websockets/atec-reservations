@@ -5,8 +5,8 @@
     </header>
 
     <div class="flex">
-      {{#each seats}}          
-        <button class="seat vacant">{{row}}{{number}}</button>
+      {{#each seats}}
+      <button class="seat {{seatClass}}">{{row}}{{number}}</button>
       {{/each}}
     </div>
   </div>

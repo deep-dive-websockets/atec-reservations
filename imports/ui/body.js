@@ -16,6 +16,18 @@ Template.body.helpers({
   // Returns all seats and their statuses from the database
   seats() {
     return Seats.find({});
+  },
+
+  // Determines the appropriate class to use for the seat button
+  seatClass() {
+    let cssClass = "vacant";
+
+    if (this.reserved)
+    {
+      cssClass = "reserved";
+    }
+
+    return cssClass;
   }
 });
 
@@ -25,38 +37,20 @@ Template.body.helpers({
   */
 Template.body.events({
 
-  // Fires when a room (<area>) on the map is clicked
-  // 'click area'(event) {
+  // Fires when a seat (<button>) on the map is clicked
+  'click button'(event) {
 
-  //   // Prevent the browser from navigating anywhere
-  //   event.preventDefault();
+    // Prevent the browser from navigating anywhere
+    event.preventDefault();
 
-  //   // Get the name of the room that was clicked
-  //   const roomName = event.target.hash.substring(1);
+    // Get instance of the Seat in the database
+    let selectedSeat = Seats.findOne({ _id: this._id });
 
-  //   // Check if this room already exists in the database
-  //   let matchingRoom = Rooms.findOne({
-  //     name: roomName
-  //   });
-
-  //   // If the room doesn't exist yet, create it
-  //   if (typeof(matchingRoom) === 'undefined')
-  //   {
-  //     Rooms.insert({
-  //       name: roomName,
-  //       reserved: false
-  //     });
-
-  //     // Point the room variable to our newly created room
-  //     matchingRoom = Rooms.findOne({
-  //       name: roomName
-  //     });
-  //   }
-
-  //   // Toggle the room's reservation status in the database
-  //   Rooms.update({ _id: matchingRoom._id }, {
-  //     name: roomName,
-  //     reserved: (!matchingRoom.reserved)
-  //   });
-  // },
+    // Toggle the seat's reservation status in the database
+    Seats.update({ _id: selectedSeat._id }, {
+      row: selectedSeat.row,
+      number: selectedSeat.number,
+      reserved: (!selectedSeat.reserved)
+    });
+  },
 });

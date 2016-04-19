@@ -1,19 +1,18 @@
 <body>
   <div class="container">
     <header>
-      <h1>Select a room to reserve</h1>
+      <h1>Select a seat to reserve</h1>
     </header>
 
-    <img id="atc" src="img/atc.png" usemap="#room_map">
- 
-    <ul>
-      {{#each rooms}}
-        {{> room}}
+    <!--<img id="atc" src="img/atc.png" usemap="#room_map">-->
+    <div class="flex">
+      {{#each seats}}          
+        <div class="seat vacant">{{row}}{{number}}</div>
       {{/each}}
-    </ul>
+    </div>
   </div>
 
-  <map name="room_map">
+  <!--<map name="room_map">
     <area shape="poly" coords="220,159,213,194,218,195,225,159,220,159" href="#1.7S1" alt="" />
     <area shape="poly" coords="185,100,188,118,205,124,209,100,185,100" href="#1.701" alt="" />
     <area shape="poly" coords="180,54,185,99,210,99,218,60,180,54" href="#1.705" alt="" />
@@ -115,9 +114,9 @@
     <area shape="rect" coords="152,33,169,66" href="#1.8S1" alt="" />
     <area shape="rect" coords="142,23,152,30" href="#1.8C2" alt="" />
     <area shape="rect" coords="109,23,133,30" href="#1.8C1" alt="" />
-  </map>
+  </map>-->
 </body>
  
-<template name="room">
+<!--<template name="room">
   <li data-reserved={{reserved}}>{{name}}</li>
-</template>
+</template>-->

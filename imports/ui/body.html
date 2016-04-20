@@ -1,21 +1,25 @@
 <body>
   <div class="container">
-    <header>
-      <h1>Please select a seat to reserve</h1>
-    </header>
+    <div class="col-md-8 reservations">
+      <header>
+        <h1>Please select a seat to reserve</h1>
+      </header>
 
-    <div class="seats">
-      {{#each seats}}
-      <button class="seat seat-{{seatClass}}">{{row}}{{number}}</button>
-      {{/each}}
+      <div class="seats">
+        {{#each seats}}
+        <button class="seat seat-{{seatClass}}">{{row}}{{number}}</button>
+        {{/each}}
+      </div>
     </div>
-
-    <div class="changes">
-      {{#each observedChanges}}
-      <pre>
-      {{changeEntry}}
-      </pre>
-      {{/each}}
+    <div class="col-md-4 changelog">
+      <header>
+        <h1>Changelog</h1>
+      </header>
+      <div class="changes">
+        {{#each observedChanges}}
+        <pre class="seat seat-{{seatClass}}">{{changeEntry}}</pre>
+        {{/each}}
+      </div>
     </div>
   </div>
 </body>

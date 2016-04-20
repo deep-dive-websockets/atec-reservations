@@ -19,7 +19,7 @@ Template.body.helpers({
 
   // Returns all seats and their statuses from the database
   seats() {
-    return Seats.find({});
+    return Seats.find();
   },
 
   // Determines the appropriate class to use for the seat button
@@ -36,12 +36,20 @@ Template.body.helpers({
 
   // Returns the changes observed during the current session
   observedChanges() {
-    return Session.get("observedChangesArray");
+    // Return changes with newest at the front of the array
+    return Session.get("observedChangesArray").reverse();
   },
 
   // Display a text representation of the Seat that changed
   changeEntry() {
-    return JSON.stringify(this);
+    let changedDocJSON = JSON.stringify(this);
+
+    changedDocJSON = changedDocJSON.replace(/{/g, '{\n\t');
+    changedDocJSON = changedDocJSON.replace(/,/g, ',\n\t');
+    changedDocJSON = changedDocJSON.replace(/:/g, ': ');
+    changedDocJSON = changedDocJSON.replace(/}/g, '\n}');
+
+    return changedDocJSON;
   }
 });
 
@@ -57,20 +65,27 @@ Template.body.events({
     // Prevent the browser from navigating anywhere
     event.preventDefault();
 
-    // Get instance of the Seat in the database
-    let selectedSeat = Seats.findOne({ _id: this._id });
-
     // Toggle the seat's reservation status in the database
-    Seats.update({ _id: selectedSeat._id }, {
-      row: selectedSeat.row,
-      number: selectedSeat.number,
-      reserved: (!selectedSeat.reserved)
+    Seats.update({ _id: this._id }, {
+      row: this.row,
+      number: this.number,
+      reserved: (!this.reserved)
     });
   },
 });
 
-Seats.after.update(function(userId, doc, fieldNames, modifier, options) {
-  let tempChangesArray = Session.get("observedChangesArray");
-  tempChangesArray.push(doc);
-  Session.set("observedChangesArray", tempChangesArray);
+/**
+  * When a change is detected, push it to the UI
+  * by setting the Session variable used by the
+  * observedChanges() template helper above
+  */
+Seats.find().observeChanges({
+  changed: function (id, fields) {
+    let changesArray = Session.get("observedChangesArray");
+    let changedSeat = Seats.findOne({ _id: id });
+
+    delete changedSeat._id;
+    changesArray.push(changedSeat);
+    Session.set("observedChangesArray", changesArray);
+  }
 });

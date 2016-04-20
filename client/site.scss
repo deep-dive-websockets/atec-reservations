@@ -10,11 +10,38 @@ body {
   background-image: linear-gradient(#111, #333);    
 }
 
-header {
-  text-align: center;
-  color: white;
+.reservations, .changelog {
+  margin-top: 20px;
+
+  header {
+    text-align: center;
+    color: white;
+  }
 }
 
-.changes pre {
-  text-align: center;
+.reservations {
+  border-right: 1px solid darken(white, 50%);
+}
+
+.changelog {
+
+  header {
+    color: darken(white, 30%);
+  }
+
+  .changes {
+    margin: 5px;
+  }
+
+  .seat {
+    color: white;
+  }
+
+  .seat-vacant {
+    @include seat-styles(darkgreen);
+  }
+
+  .seat-reserved {
+    @include seat-styles(darkred);
+  }
 }

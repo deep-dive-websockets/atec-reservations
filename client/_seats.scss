@@ -1,0 +1,39 @@
+$seatSize: 40px;
+$seatMargin: 5px;
+
+@mixin seat-styles($baseColor) {
+  background-color: $baseColor;
+
+  &:hover {
+    background-color: darken($baseColor, 10%);
+  }
+}
+
+.seats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  margin: auto;
+  width: (10 * $seatSize) + (2 * 10 * $seatMargin);
+}
+
+.seats .seat {
+  width: $seatSize;
+  height: $seatSize;
+  margin: $seatMargin;
+
+  border-radius: 2px;
+  border-style: none;
+
+  font-size: 1.2rem;
+  color: white;
+
+  &.seat-vacant {
+    @include seat-styles(green);
+  }
+
+  &.seat-reserved {
+    @include seat-styles(red);
+  }
+}

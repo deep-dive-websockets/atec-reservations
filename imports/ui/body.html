@@ -1,16 +1,16 @@
 <body>
   <div class="container">
     <header>
-      <h1>Select a seat to reserve</h1>
+      <h1>Please select a seat to reserve</h1>
     </header>
 
-    <div class="flex">
+    <div class="seats">
       {{#each seats}}
-      <button class="seat {{seatClass}}">{{row}}{{number}}</button>
+      <button class="seat seat-{{seatClass}}">{{row}}{{number}}</button>
       {{/each}}
     </div>
 
-    <div>
+    <div class="changes">
       {{#each observedChanges}}
       <pre>
       {{changeEntry}}

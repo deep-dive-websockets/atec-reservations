@@ -35,6 +35,7 @@ jquery@1.11.7
 launch-screen@1.0.10
 livedata@1.0.17
 logging@1.0.11
+matb33:collection-hooks@0.8.1
 meteor@1.1.13
 meteor-base@1.0.3
 minifier-css@1.1.10
@@ -51,10 +52,12 @@ observe-sequence@1.0.10
 ordered-dict@1.0.6
 promise@0.6.6
 random@1.0.8
+reactive-dict@1.1.6
 reactive-var@1.0.8
 reload@1.1.7
 retry@1.0.6
 routepolicy@1.0.9
+session@1.1.4
 spacebars@1.0.10
 spacebars-compiler@1.0.10
 standard-minifier-css@1.0.5

@@ -9,5 +9,13 @@
       <button class="seat {{seatClass}}">{{row}}{{number}}</button>
       {{/each}}
     </div>
+
+    <div>
+      {{#each observedChanges}}
+      <pre>
+      {{changeEntry}}
+      </pre>
+      {{/each}}
+    </div>
   </div>
 </body>

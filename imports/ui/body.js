@@ -9,7 +9,7 @@ import { Seats } from '../api/seats.js';
 import './body.html';
 
 /** Variable to hold changes seen in this session */
-Session.setDefault("observedChangesArray", []);
+Session.setDefault('observedChangesArray', []);
 
 /**
   * Helpers are used in the content of the
@@ -24,11 +24,11 @@ Template.body.helpers({
 
   // Determines the appropriate class to use for the seat button
   seatClass() {
-    let cssClass = "vacant";
+    let cssClass = 'vacant';
 
     if (this.reserved)
     {
-      cssClass = "reserved";
+      cssClass = 'reserved';
     }
 
     return cssClass;
@@ -37,7 +37,7 @@ Template.body.helpers({
   // Returns the changes observed during the current session
   observedChanges() {
     // Return changes with newest at the front of the array
-    return Session.get("observedChangesArray").reverse();
+    return Session.get('observedChangesArray').reverse();
   },
 
   // Display a text representation of the Seat that changed

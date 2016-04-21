@@ -8,6 +8,13 @@ import { Seats } from '../api/seats.js';
 /** This imports the content of our page */
 import './body.html';
 
+Template.body.onCreated(function bodyOnCreated() {
+
+  // Subscribe to the WebSocket channel
+  Meteor.subscribe('seats');
+
+});
+
 /** Variable to hold changes seen in this session */
 Session.setDefault('observedChangesArray', []);
 

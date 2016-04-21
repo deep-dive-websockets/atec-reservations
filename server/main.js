@@ -18,7 +18,8 @@ Meteor.startup(() => {
         Seats.insert({
           "row": rowLetter,
           "number": (seatNumber + 1),
-          "reserved": false
+          "reserved": false,
+          "name": ""
         });
       }
     }

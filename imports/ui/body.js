@@ -64,12 +64,22 @@ Template.body.events({
 
     // Prevent the browser from navigating anywhere
     event.preventDefault();
-
+    var nameInput;
+    
+    //if it is reserved, we are going to make it vacant, so delete the name
+    if(this.reserved) {
+          nameInput = "";
+    }
+    else{
+          nameInput = document.getElementById('name').value;
+    }
+    
     // Toggle the seat's reservation status in the database
     Seats.update({ _id: this._id }, {
       row: this.row,
       number: this.number,
-      reserved: (!this.reserved)
+      reserved: (!this.reserved),
+      name: nameInput
     });
   },
 });

@@ -64,17 +64,11 @@ Template.body.events({
 
     // Prevent the browser from navigating anywhere
     event.preventDefault();
-    var nameInput;
+
+    // If reserving a seat, get the name of the attendee
+    const nameInput = (!this.reserved) ? jQuery('#name').val() : '';
     
-    //if it is reserved, we are going to make it vacant, so delete the name
-    if(this.reserved) {
-          nameInput = "";
-    }
-    else{
-          nameInput = document.getElementById('name').value;
-    }
-    
-    // Toggle the seat's reservation status in the database
+    // Toggle the seat's reservation status and set name in the database
     Seats.update({ _id: this._id }, {
       row: this.row,
       number: this.number,
@@ -91,11 +85,11 @@ Template.body.events({
   */
 Seats.find().observeChanges({
   changed: function (id, fields) {
-    let changesArray = Session.get("observedChangesArray");
+    let changesArray = Session.get('observedChangesArray');
     let changedSeat = Seats.findOne({ _id: id });
 
     delete changedSeat._id;
     changesArray.push(changedSeat);
-    Session.set("observedChangesArray", changesArray);
+    Session.set('observedChangesArray', changesArray);
   }
 });

@@ -16,10 +16,10 @@ Meteor.startup(() => {
         const rowLetter = String.fromCharCode(65 + rowNumber);
 
         Seats.insert({
-          "row": rowLetter,
-          "number": (seatNumber + 1),
-          "reserved": false,
-          "name": ""
+          'row': rowLetter,
+          'number': (seatNumber + 1),
+          'reserved': false,
+          'name': ''
         });
       }
     }

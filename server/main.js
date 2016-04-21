@@ -13,14 +13,12 @@ Meteor.startup(() => {
       // Nested for loop, yeah I know; we can clean this up later
       for(let seatNumber = 0; seatNumber < nubmerSeatsPerRow; seatNumber++)
       {
-        const rowLetter = String.fromCharCode(65 + rowNumber);
-
-        Seats.insert({
-          'row': rowLetter,
-          'number': (seatNumber + 1),
-          'reserved': false,
-          'name': ''
-        });
+        Meteor.call('seats.insert',
+          String.fromCharCode(65 + rowNumber), // Row Letter
+          (seatNumber + 1), // Row Number
+          false, // Reserved Status
+          '' // Attendee Name
+        );
       }
     }
   }

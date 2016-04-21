@@ -12,7 +12,6 @@ Template.body.onCreated(function bodyOnCreated() {
 
   // Subscribe to the WebSocket channel
   Meteor.subscribe('seats');
-
 });
 
 /** Variable to hold changes seen in this session */
@@ -73,15 +72,13 @@ Template.body.events({
     event.preventDefault();
 
     // If reserving a seat, get the name of the attendee
-    const nameInput = (!this.reserved) ? jQuery('#name').val() : '';
-    
+    const attendeeName = (!this.reserved) ? jQuery('#name').val() : '';
+
     // Toggle the seat's reservation status and set name in the database
-    Seats.update({ _id: this._id }, {
-      row: this.row,
-      number: this.number,
-      reserved: (!this.reserved),
-      name: nameInput
-    });
+    Meteor.call('seats.setReserved', this._id,
+      !this.reserved,
+      attendeeName
+    );
   },
 });
 

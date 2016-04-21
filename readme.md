@@ -1,4 +1,4 @@
-# ATEC Reservations using WebSockets
+# Seat Reservations using WebSockets
 
 ## Running this code sample
 
@@ -14,4 +14,4 @@ It should look something like this
 
 ## Inspecting the code
 
-Most of the interesting bits are in [imports/ui/body.js](imports/ui/body.js)
+Most of the interesting bits are in [`imports/ui/body.js`](imports/ui/body.js) and [`imports/api/seats.js`](imports/api/seats.js)

@@ -23,6 +23,10 @@ body {
   border-right: 1px solid darken(white, 50%);
 }
 
+.reservations > header > a {
+  font-size: 2rem;
+}
+
 .reservation-form {
   max-width: 300px;
   margin-left: auto;
